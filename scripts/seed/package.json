@@ -1,0 +1,30 @@
+{
+  "name": "supply-chain-seed",
+  "version": "1.0.0",
+  "description": "TypeScript mock data generator using @faker-js/faker",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "seed": "ts-node src/index.ts",
+    "seed:compiled": "node dist/index.js",
+    "test": "jest --passWithNoTests"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": ["**/__tests__/**/*.test.ts"]
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "better-sqlite3": "^9.4.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}

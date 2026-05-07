@@ -29,5 +29,18 @@ data/*.log
 .DS_Store
 Thumbs.db
 
+# ── Tests ─────────────────────────────────────────────────────────────────────
+tests/
+.pytest_cache/
+rule_engine.tests/
+
+# TypeScript test artifacts
+scripts/seed/src/__tests__/
+scripts/seed/node_modules/
+scripts/seed/dist/
+
+# Go test artifacts
+api/go/handlers/handlers_test.go
+
 # ── Claude Code ───────────────────────────────────────────────────────────────
 .claude/

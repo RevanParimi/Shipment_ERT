@@ -209,16 +209,30 @@ The inventory filter uses SQLite string concatenation (`plant || '|' || material
 
 ## Tech Stack
 
+### Core (Python — LangGraph ecosystem lock-in)
+
 | Component | Technology |
 |-----------|-----------|
-| Agent orchestration | LangGraph 0.1.5 (StateGraph) |
-| LLM (Agents 2, 3, 4) | Groq llama-3.3-70b-versatile via groq SDK |
+| Agent orchestration | LangGraph 0.1.5 (StateGraph + conditional routing) |
+| LLM — Agents 2, 3, 4 | Groq llama-3.3-70b-versatile via groq SDK |
 | Parallelism | `concurrent.futures.ThreadPoolExecutor` (max 4 workers per agent) |
 | Retry / rate-limit | Exponential backoff on `groq.RateLimitError` (2 s → 4 s) |
-| API | FastAPI 0.111.0 + uvicorn |
-| Database | SQLite via stdlib `sqlite3` (filtered queries, not SELECT *) |
-| Mock data | Faker 25 + custom generators |
+| API (current) | FastAPI 0.111.0 + uvicorn |
+| Database | SQLite via stdlib `sqlite3` (filtered queries, not `SELECT *`) |
 | Vector store | ChromaDB 0.5.0 (available, extensible) |
+
+### Production extensions (multi-language)
+
+| Component | Language | File | Replaces |
+|-----------|----------|------|---------|
+| Public REST API | **Go** (Gin) | `api/go/` | `api/routes.py` — goroutines, lower memory, single binary |
+| Business rule engine | **C#** (.NET 8) | `rule_engine/` | `_rule_decide()` + `_formula_impact()` — auditable, testable |
+| Mock data generation | **TypeScript** (Node.js) | `scripts/seed/` | `scripts/seed_data.py` — faker-js, `better-sqlite3`, typed interfaces |
+| DB schema | **SQL** | `scripts/schema.sql` | Python `SCHEMA` string — schema lives in SQL, not in code |
+| DB initialisation | **Bash** | `scripts/setup_db.sh` | `seed_data.py` schema creation step |
+| Pipeline scheduling | **Shell** + cron | `scripts/schedule.sh` | Manual `curl` — triggers `/run` every 15 min on weekdays |
+| Health monitoring | **Shell** | `scripts/monitor.sh` | None — polls `/health`, emails/Slack alert on failure |
+| DB backup | **Shell** | `scripts/backup.sh` | None — SQLite hot backup with 7-day rotation |
 
 ---
 
@@ -226,29 +240,61 @@ The inventory filter uses SQLite string concatenation (`plant || '|' || material
 
 ```
 supply_chain_ai/
-├── main.py                    # uvicorn entry point
+├── main.py                        # Python uvicorn entry point (port 8001 internally)
 ├── requirements.txt
-├── .env.example               # copy → .env and fill keys
-├── Dockerfile                 # container image definition
-├── docker-compose.yml         # local deployment (one command)
-├── entrypoint.sh              # seeds DB on first boot, then starts server
-├── agents/
-│   ├── utils.py               # shared Groq client, SIM_NOW, retry logic
-│   ├── ingestion.py           # Agent 1 — scope-filtered DB reads
-│   ├── risk_detection.py      # Agent 2 — 4-signal risk scoring (LLM + rules)
-│   ├── impact_analysis.py     # Agent 3 — LLM holistic impact assessment
-│   ├── mitigation.py          # Agent 4 — LLM action recommendation
-│   └── action.py              # Agent 5 — autonomous execution / HITL
+├── .env.example
+├── .gitignore
+├── Dockerfile
+├── docker-compose.yml
+├── entrypoint.sh
+│
+├── agents/                        # Python — LangGraph agent nodes
+│   ├── utils.py                   # Shared Groq client, SIM_NOW, retry
+│   ├── ingestion.py               # Agent 1 — scope-filtered DB reads
+│   ├── risk_detection.py          # Agent 2 — LLM batch + deterministic signals
+│   ├── impact_analysis.py         # Agent 3 — LLM holistic impact
+│   ├── mitigation.py              # Agent 4 — LLM / rule mitigation
+│   └── action.py                  # Agent 5 — AUTO vs ESCALATE
+│
 ├── graph/
-│   ├── state.py               # PipelineState dataclass (schema reference)
-│   └── pipeline.py            # LangGraph StateGraph assembly
+│   ├── state.py                   # PipelineState dataclass
+│   └── pipeline.py                # LangGraph graph + 3 conditional routes
+│
 ├── api/
-│   └── routes.py              # FastAPI REST endpoints
+│   ├── routes.py                  # FastAPI (Python — current)
+│   └── go/                        # Go — production API layer
+│       ├── go.mod
+│       ├── main.go
+│       └── handlers/
+│           ├── store.go           # Thread-safe in-memory result cache
+│           ├── health.go
+│           ├── pipeline.go        # Proxies /run → Python service
+│           ├── shipments.go
+│           ├── escalations.go
+│           └── summary.go
+│
+├── rule_engine/                   # C# — auditable business rule engine
+│   ├── SupplyChainRules.csproj
+│   ├── ImpactRules.cs             # Severity scoring rules
+│   └── MitigationRules.cs         # Action selection rules
+│
 ├── scripts/
-│   └── seed_data.py           # Mock data generator
+│   ├── schema.sql                 # SQL DDL with production indexes
+│   ├── setup_db.sh                # sqlite3 DB initialisation (Bash)
+│   ├── schedule.sh                # Cron pipeline trigger (Shell)
+│   ├── monitor.sh                 # Health check + alerting (Shell)
+│   ├── backup.sh                  # SQLite hot backup, 7-day rotation (Shell)
+│   ├── seed_data.py               # Python seed (original)
+│   └── seed/                      # TypeScript seed (replacement)
+│       ├── package.json
+│       ├── tsconfig.json
+│       └── src/
+│           ├── generators.ts      # faker-js typed generators
+│           └── index.ts           # Entry point, better-sqlite3 inserts
+│
 └── data/
-    ├── supply_chain.db        # Seeded SQLite database
-    └── emails/                # 22 email JSON files
+    ├── supply_chain.db
+    └── emails/
 ```
 
 ---

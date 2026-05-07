@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0030-2",
+  "shipment_id": "SHP-PO-0030",
+  "sender": "vpham@example.org",
+  "subject": "RE: SHP-PO-0030 \u2014 missed pickup window",
+  "body": "Shipment SHP-PO-0030 is currently stuck at the Johnsonmouth transshipment hub due to port congestion. Estimated additional delay: 65 hours.",
+  "timestamp": "2026-05-03 12:00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0021-0",
+  "shipment_id": "SHP-PO-0021",
+  "sender": "contrerasangela@example.net",
+  "subject": "Urgent: Shipment SHP-PO-0021 delayed at customs",
+  "body": "Shipment SHP-PO-0021 is currently stuck at the Cherylhaven transshipment hub due to port congestion. Estimated additional delay: 42 hours.",
+  "timestamp": "2026-04-28 04:00:00"
+}

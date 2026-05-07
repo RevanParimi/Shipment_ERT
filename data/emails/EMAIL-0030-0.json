@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0030-0",
+  "shipment_id": "SHP-PO-0030",
+  "sender": "jason31@example.com",
+  "subject": "Alert: SHP-PO-0030 stuck at transshipment hub",
+  "body": "Due to an unexpected road closure near West Michaelton, SHP-PO-0030 is delayed by roughly 57 hours.",
+  "timestamp": "2026-04-26 06:00:00"
+}

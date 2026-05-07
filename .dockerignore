@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyd
+.pytest_cache/
+
+# Environment — secrets must never be baked into the image
+.env
+
+# Git
+.git/
+.gitignore
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+
+# ChromaDB persistent store — starts empty in container, grows at runtime
+chroma_store/
+
+# Claude Code settings
+.claude/

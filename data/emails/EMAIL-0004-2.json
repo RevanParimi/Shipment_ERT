@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0004-2",
+  "shipment_id": "SHP-PO-0004",
+  "sender": "novaksara@example.org",
+  "subject": "Update on SHP-PO-0004: road closure causing delay",
+  "body": "Unfortunately SHP-PO-0004 missed the scheduled pickup from North Deniseside. The next available slot is 42 hours away. Please update your ETA accordingly.",
+  "timestamp": "2026-04-25 12:00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0008-0",
+  "shipment_id": "SHP-PO-0008",
+  "sender": "tanyariley@example.net",
+  "subject": "SHP-PO-0008 departed on schedule",
+  "body": "Customs clearance complete for SHP-PO-0008. Vehicle is en route to final destination.",
+  "timestamp": "2026-04-26 19:00:00"
+}

@@ -1,0 +1,22 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: supply-chain-ai:latest
+    container_name: supply_chain_api
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env          # GROQ_API_KEY and overrides live here — never in the image
+    volumes:
+      # Persist the SQLite database and email files across restarts.
+      # On first boot, entrypoint.sh seeds the DB if it is absent.
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s

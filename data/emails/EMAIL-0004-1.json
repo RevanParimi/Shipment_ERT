@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0004-1",
+  "shipment_id": "SHP-PO-0004",
+  "sender": "ewright@example.com",
+  "subject": "Alert: SHP-PO-0004 stuck at transshipment hub",
+  "body": "Shipment SHP-PO-0004 is currently stuck at the South Isaiah transshipment hub due to port congestion. Estimated additional delay: 21 hours.",
+  "timestamp": "2026-05-01 14:00:00"
+}

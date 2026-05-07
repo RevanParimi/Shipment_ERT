@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0004-0",
+  "shipment_id": "SHP-PO-0004",
+  "sender": "wrightjames@example.com",
+  "subject": "Update on SHP-PO-0004: road closure causing delay",
+  "body": "Customs clearance for SHP-PO-0004 has been put on hold \u2014 missing certificate of origin. Please advise ASAP. Estimated delay: 29+ hours.",
+  "timestamp": "2026-05-01 01:00:00"
+}

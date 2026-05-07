@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0014-1",
+  "shipment_id": "SHP-PO-0014",
+  "sender": "larsonemma@example.org",
+  "subject": "IMPORTANT: SHP-PO-0014 customs hold \u2014 docs missing",
+  "body": "Unfortunately SHP-PO-0014 missed the scheduled pickup from New Christopherburgh. The next available slot is 65 hours away. Please update your ETA accordingly.",
+  "timestamp": "2026-05-03 10:00:00"
+}

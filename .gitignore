@@ -1,0 +1,33 @@
+# ── Secrets ──────────────────────────────────────────────────────────────────
+# Never commit your API key. Copy .env.example → .env locally.
+.env
+
+# ── Python virtual environments ───────────────────────────────────────────────
+.venv/
+venv/
+.ai_supply/          # project-specific venv name
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.py[cod]
+*.pyd
+
+# ── Runtime / generated ───────────────────────────────────────────────────────
+# ChromaDB grows at runtime — do not commit it
+chroma_store/
+
+# data/ is intentionally COMMITTED so reviewers can run the project immediately
+# without having to seed. Only exclude files that get auto-generated at runtime:
+data/*.log
+
+# ── IDE / editor ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+.claude/

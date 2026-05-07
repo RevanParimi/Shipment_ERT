@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0030-1",
+  "shipment_id": "SHP-PO-0030",
+  "sender": "michellecherry@example.org",
+  "subject": "RE: SHP-PO-0030 \u2014 missed pickup window",
+  "body": "Due to an unexpected road closure near Dicksonberg, SHP-PO-0030 is delayed by roughly 13 hours.",
+  "timestamp": "2026-04-30 23:00:00"
+}

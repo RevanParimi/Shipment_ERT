@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0017-0",
+  "shipment_id": "SHP-PO-0017",
+  "sender": "wstewart@example.org",
+  "subject": "Alert: SHP-PO-0017 stuck at transshipment hub",
+  "body": "Unfortunately SHP-PO-0017 missed the scheduled pickup from Randyport. The next available slot is 72 hours away. Please update your ETA accordingly.",
+  "timestamp": "2026-05-03 04:00:00"
+}

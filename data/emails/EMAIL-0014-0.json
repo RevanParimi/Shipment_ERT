@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0014-0",
+  "shipment_id": "SHP-PO-0014",
+  "sender": "hshaw@example.org",
+  "subject": "Alert: SHP-PO-0014 stuck at transshipment hub",
+  "body": "Customs clearance for SHP-PO-0014 has been put on hold \u2014 missing certificate of origin. Please advise ASAP. Estimated delay: 9+ hours.",
+  "timestamp": "2026-05-03 19:00:00"
+}

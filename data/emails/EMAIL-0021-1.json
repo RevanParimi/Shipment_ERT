@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0021-1",
+  "shipment_id": "SHP-PO-0021",
+  "sender": "josephjacobs@example.net",
+  "subject": "RE: SHP-PO-0021 \u2014 missed pickup window",
+  "body": "Shipment SHP-PO-0021 is currently stuck at the East Josephville transshipment hub due to port congestion. Estimated additional delay: 41 hours.",
+  "timestamp": "2026-05-04 01:00:00"
+}

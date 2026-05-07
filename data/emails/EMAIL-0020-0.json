@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0020-0",
+  "shipment_id": "SHP-PO-0020",
+  "sender": "mikemoore@example.net",
+  "subject": "SHP-PO-0020 departed on schedule",
+  "body": "Shipment SHP-PO-0020 has been delivered to West Nicole. Please sign off.",
+  "timestamp": "2026-04-27 19:00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "email_id": "EMAIL-0022-0",
+  "shipment_id": "SHP-PO-0022",
+  "sender": "cookdavid@example.com",
+  "subject": "IMPORTANT: SHP-PO-0022 customs hold \u2014 docs missing",
+  "body": "Customs clearance for SHP-PO-0022 has been put on hold \u2014 missing certificate of origin. Please advise ASAP. Estimated delay: 27+ hours.",
+  "timestamp": "2026-04-30 02:00:00"
+}
